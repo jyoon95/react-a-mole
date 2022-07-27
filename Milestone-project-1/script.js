@@ -38,8 +38,11 @@ rowBoard.forEach((row) => {
     rowContainer.appendChild(column);
   }
 });
+
+//universal variables
 var player = "white";
 var selectedPiece = null;
+
 //append pieces onto board position
 //pieces
 function startGame() {
