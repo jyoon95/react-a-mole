@@ -41,6 +41,7 @@ rowBoard.forEach((row) => {
 var player = "white";
 var selectedPiece = null;
 //append pieces onto board position
+//pieces
 function startGame() {
   player = "white";
   setPiece(1, 1, "black", "rook");
@@ -64,6 +65,7 @@ function startGame() {
     setPiece(7, i, "white", "pawn");
   }
 }
+//position the pieces
 function setPiece(row, col, color, piece) {
   const img = document.createElement("img");
   img.src = "../images/" + color + piece + ".png";
@@ -72,7 +74,7 @@ function setPiece(row, col, color, piece) {
   cell.setAttribute("color", color);
   cell.setAttribute("piece", piece);
 }
-
+//determines player turn
 function selectCell(cell) {
   const available = cell.getAttribute("available");
   const color = cell.getAttribute("color");
@@ -97,9 +99,11 @@ function selectCell(cell) {
     unHighlightCells();
   }
 }
+// return cell to player turn
 function getCell(row, col) {
   return document.getElementById(row + "-" + col);
 }
+//pawn movement with not being able to move past piece in front
 function determineMoves(row, col, color, piece) {
   var moves = [];
   switch (piece) {
@@ -134,12 +138,14 @@ function determineMoves(row, col, color, piece) {
     }
   }
 }
+//remove piece from initial position to show it moved to another cell
 function removePiece(row, col) {
   const cell = getCell(row, col);
   cell.innerHTML = "";
   cell.removeAttribute("color");
   cell.removeAttribute("piece");
 }
+//removes the highlighted squares after selecting a square to move
 function unHighlightCells() {
   rowBoard.forEach((row) => {
     for (let i = 1; i < 9; i++) {
